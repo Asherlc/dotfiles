@@ -1,18 +1,10 @@
 SOURCE		:= $(CURDIR)
 TARGET		:= $(HOME)
-FILES		:= aliases bash_profile bashrc functions gemrc gitconfig gitignore inputrc screenrc slate.js zshrc zshenv
+FILES		:= bash_profile gitconfig gitignore gitignore_global
 
 UNAME		:= $(shell uname)
 
 all: clean install
-
-install_tmux:
-	@ln -sf $(CURDIR)/tmux-$(UNAME).conf $(TARGET)/.tmux.conf
-	@ln -sf $(CURDIR)/tmux.conf $(TARGET)/.tmux-all.conf
-
-clean_tmux:
-	@-unlink $(TARGET)/.tmux.conf
-	@-unlink $(TARGET)/.tmux-all.conf
 
 install_dotfiles:
 	@for f in $(FILES); do \
@@ -30,6 +22,6 @@ clean_dotfiles:
 	@-unlink $(TARGET)/.ssh/rc
 	@-unlink $(TARGET)/bin
 
-install: install_dotfiles install_tmux
+install: install_dotfiles
 
-clean: clean_tmux clean_dotfiles
+clean: clean_dotfiles
