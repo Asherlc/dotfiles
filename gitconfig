@@ -1,0 +1,12 @@
+[user]
+	name = Asher Cohen
+	email = asherlcohen@gmail.com
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	ui = true
+[core]
+	excludesfile = /Users/ashercohen/.gitignore_global
+[push]
+	default = simple
