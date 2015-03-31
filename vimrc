@@ -8,3 +8,4 @@ let g:solarized_contrast="high"
 let g:solarized_visibility="high"
 colorscheme solarized
 :set number
+au BufNewFile,BufRead *.json.jbuilder set ft=ruby
