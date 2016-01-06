@@ -10,3 +10,4 @@ export PATH="/usr/local/share/npm/bin:$PATH"
 export EDITOR=vi
 export GITAWAREPROMPT=~/.bash/git-aware-prompt
 source "${GITAWAREPROMPT}/main.sh"
+export PS1="\u@\h \W \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
