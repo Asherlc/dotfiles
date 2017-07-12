@@ -1,7 +1,4 @@
 export PATH=/usr/local/bin:$PATH
-export PATH="$HOME/.rbenv/bin:$PATH"
-export RBENV_ROOT=/usr/local/var/rbenv
-eval "$(rbenv init -)"
 # Set Knife editor
 export EDITOR=vi
 export GITAWAREPROMPT=~/.bash/git-aware-prompt
