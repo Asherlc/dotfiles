@@ -15,6 +15,8 @@ install_dotfiles:
 	@mkdir -p ~/.ssh/
 	@chmod 700 ~/.ssh/
 	@ln -sf $(SOURCE)/sshrc ~/.ssh/rc
+	@ln -s ~/.vim/vimrc ~/.vimrc
+	@ln -s ~/.vim/gvimrc ~/.gvimrc
 
 clean_dotfiles:
 	@-for f in $(FILES); do \
