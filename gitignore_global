@@ -8,6 +8,7 @@ Session.vim
 .AppleDouble
 .LSOverride
 Icon
+node_modules
 
 
 # Thumbnails
