@@ -1,7 +1,7 @@
 SOURCE		:= $(CURDIR)
 TARGET		:= $(HOME)
 
-FILES		:= gitconfig gitignore gitignore_global vimrc bashrc bash_profile 
+FILES		:= gitconfig gitignore gitignore_global vimrc bashrc bash_profile bash_aliases
 
 UNAME		:= $(shell uname)
 
