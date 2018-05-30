@@ -28,3 +28,8 @@ alias zcat=gzcat
  
  export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
  [[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load av    n
+ 
+if [ -e ~/.bash_aliases ]
+then
+  . ~/.bash_aliases
+fi
