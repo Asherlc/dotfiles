@@ -8,8 +8,7 @@ UNAME		:= $(shell uname)
 all: clean install
 
 install_dependencies:
-	brew install thefuck
-	brew install rbenv
+	brew install thefuck rbenv bash-completion
 	git clone git://github.com/jimeh/git-aware-prompt.git ~/.bash/git-aware-prompt
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 	mkdir -p ~/.vim/autoload ~/.vim/bundle && 
