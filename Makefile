@@ -1,15 +1,14 @@
 SOURCE		:= $(CURDIR)
 TARGET		:= $(HOME)
 
-FILES		:= gitconfig gitignore gitignore_global vimrc bashrc bash_profile bash_aliases.sh
+FILES		:= gitconfig gitignore gitignore_global vimrc zshrc zprofile aliases.sh
 
 UNAME		:= $(shell uname)
 
 all: clean install
 
 install_dependencies:
-	brew install thefuck rbenv bash-completion
-	git clone git://github.com/jimeh/git-aware-prompt.git ~/.bash/git-aware-prompt
+	brew install thefuck rbenv
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 	mkdir -p ~/.vim/autoload ~/.vim/bundle && 
     curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
@@ -26,7 +25,7 @@ install_dotfiles:
 	ln -sf ~/.vim/gvimrc ~/.gvimrc
 
 clean_dirs:
-	rm -rf ~/.bash
+	# Nothing to clean atm
 
 clean_dotfiles:
 	for f in $(FILES); do \
