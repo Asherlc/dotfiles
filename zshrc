@@ -5,8 +5,11 @@ export PATH=/usr/local/bin:$PATH
 export EDITOR=vi
 
 eval $(thefuck --alias)
-export NVM_DIR="$HOME/.nvm" 
-. $(brew --prefix nvm)/nvm.sh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 eval "$(rbenv init -)"
 
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
