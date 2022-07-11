@@ -1,7 +1,7 @@
 SOURCE		:= $(CURDIR)
 TARGET		:= $(HOME)
 
-FILES		:= gitconfig gitignore gitignore_global vimrc zshrc zprofile aliases.sh
+FILES		:= gitconfig gitignore gitignore_global vimrc zshrc zprofile aliases.sh ssh/config
 
 UNAME		:= $(shell uname)
 
