@@ -12,6 +12,7 @@ install_dependencies:
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 	mkdir -p ~/.vim/autoload ~/.vim/bundle && 
     curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 install_dotfiles:
 	for f in $(FILES); do \
