@@ -4,10 +4,12 @@ set +a
 
 export CPATH=/usr/local/include
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 ### Oh My Zsh
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
-plugins=(git)
+plugins=(git dotenv)
 source $ZSH/oh-my-zsh.sh
 ### End Oh My Zsh
 
@@ -21,7 +23,6 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 ### end pyenv
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 eval $(thefuck --alias)
 
