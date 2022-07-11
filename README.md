@@ -6,7 +6,7 @@ Usage
 =====
 Clone the repository:
 
-    git clone git://github.com/asherlc/dotfiles.git
+    git clone https://github.com/asherlc/dotfiles.git
 
 Create symlinks (will overwrite existing files):
 
