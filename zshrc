@@ -1,4 +1,8 @@
 
+set -a # automatically export all variables
+[[ -s "$HOME/.env" ]] && source "$HOME/.env"
+set +a
+
 export CPATH=/usr/local/include
 
 ### Oh My Zsh
