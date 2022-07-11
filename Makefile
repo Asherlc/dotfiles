@@ -28,13 +28,12 @@ clean_dirs:
 	# Nothing to clean atm
 
 clean_dotfiles:
-	for f in $(FILES); do \
-		if [ -f "$f" ];
-			unlink $(TARGET)/.$$f; \
-		fi
+	for file in $(FILES); do \
+		path="$(TARGET)/.$$file"; \
+		rm -f "$$path"; \
 	done
-	unlink $(TARGET)/.ssh/rc
-	unlink $(TARGET)/bin
+	rm -f $(TARGET)/.ssh/rc
+	rm -f $(TARGET)/bin
 
 install: 
 	$(MAKE) install_dependencies
