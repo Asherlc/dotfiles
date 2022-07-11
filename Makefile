@@ -29,7 +29,9 @@ clean_dirs:
 
 clean_dotfiles:
 	for f in $(FILES); do \
-		unlink $(TARGET)/.$$f; \
+		if [ -f "$f" ];
+			unlink $(TARGET)/.$$f; \
+		fi
 	done
 	unlink $(TARGET)/.ssh/rc
 	unlink $(TARGET)/bin
