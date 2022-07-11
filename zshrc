@@ -4,6 +4,8 @@ export PATH=/usr/local/bin:$PATH
 # Set Knife editor
 export EDITOR=vi
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 eval $(thefuck --alias)
 
 export NVM_DIR="$HOME/.nvm"
