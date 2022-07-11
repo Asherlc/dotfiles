@@ -10,7 +10,7 @@ Clone the repository:
 
 Install dependencies:
 
-    install_dependencies
+    make install_dependencies
 
 Create symlinks (will overwrite existing files):
 
