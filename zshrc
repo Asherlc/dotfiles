@@ -1,7 +1,12 @@
+
 export CPATH=/usr/local/include
 
+### Oh My Zsh
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
+### End Oh My Zsh
 
 export PATH=/usr/local/bin:$PATH
 # Set Knife editor
