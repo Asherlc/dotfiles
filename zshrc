@@ -1,4 +1,3 @@
-
 set -a # automatically export all variables
 [[ -s "$HOME/.env" ]] && source "$HOME/.env"
 set +a
@@ -15,6 +14,12 @@ source $ZSH/oh-my-zsh.sh
 export PATH=/usr/local/bin:$PATH
 # Set Knife editor
 export EDITOR=vi
+
+ ### pyenv
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+### end pyenv
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
