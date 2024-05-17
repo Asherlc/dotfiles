@@ -1,7 +1,7 @@
 SOURCE		:= $(CURDIR)
 TARGET		:= $(HOME)
 
-FILES		:= gitconfig gitignore gitignore_global vimrc zshrc zprofile aliases.sh ssh/config
+FILES		:= gitconfig gitignore gitignore_global vimrc zshrc zprofile aliases.sh
 
 UNAME		:= $(shell uname)
 
@@ -9,6 +9,7 @@ all: clean install
 
 install_dependencies:
 	brew install thefuck rbenv zsh pyenv pyenv-virtualenv
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 	mkdir -p ~/.vim/autoload ~/.vim/bundle && 
     curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
