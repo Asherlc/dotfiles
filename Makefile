@@ -8,10 +8,11 @@ UNAME		:= $(shell uname)
 all: clean install
 
 install_dependencies:
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	brew install thefuck rbenv zsh pyenv pyenv-virtualenv
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-	mkdir -p ~/.vim/autoload ~/.vim/bundle && 
+	mkdir -p ~/.vim/autoload ~/.vim/bundle
     curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 install_dotfiles:
