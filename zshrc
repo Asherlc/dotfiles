@@ -39,6 +39,4 @@ alias zcat=gzcat
  export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
  [[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load av    n
 
-export PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-
 . ~/.aliases.sh
