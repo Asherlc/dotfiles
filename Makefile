@@ -25,6 +25,10 @@ install_dotfiles:
 	ln -sf $(SOURCE)/sshrc ~/.ssh/rc
 	ln -sf ~/.vim/vimrc ~/.vimrc
 	ln -sf ~/.vim/gvimrc ~/.gvimrc
+	mkdir -p $(TARGET)/.claude $(TARGET)/.gemini $(TARGET)/.codex
+	ln -sf $(SOURCE)/AGENTS.md $(TARGET)/.claude/CLAUDE.md
+	ln -sf $(SOURCE)/AGENTS.md $(TARGET)/.gemini/GEMINI.md
+	ln -sf $(SOURCE)/AGENTS.md $(TARGET)/.codex/AGENTS.md
 
 clean_dirs:
 	# Nothing to clean atm
@@ -36,6 +40,9 @@ clean_dotfiles:
 	done
 	rm -f $(TARGET)/.ssh/rc
 	rm -f $(TARGET)/bin
+	rm -f $(TARGET)/.claude/CLAUDE.md
+	rm -f $(TARGET)/.gemini/GEMINI.md
+	rm -f $(TARGET)/.codex/AGENTS.md
 
 install: 
 	$(MAKE) install_dependencies
