@@ -1,0 +1,61 @@
+#!/bin/zsh
+# Expose one loopback-only HTTP development server with a temporary Cloudflare
+# Quick Tunnel. The process remains in the foreground for the tunnel lifetime.
+set -euo pipefail
+
+if (( $# != 1 )) || [[ ! $1 =~ '^[0-9]+$' ]]; then
+  print -u2 'Usage: paseo-quick-tunnel <port>'
+  exit 64
+fi
+
+port=$1
+if (( 10#$port < 1 || 10#$port > 65535 )); then
+  print -u2 'Port must be an integer from 1 through 65535.'
+  exit 64
+fi
+
+cloudflared_bin=${CLOUDFLARED_BIN:-/opt/homebrew/bin/cloudflared}
+if [[ ! -x $cloudflared_bin ]]; then
+  print -u2 "cloudflared is not executable at $cloudflared_bin"
+  exit 69
+fi
+
+# An empty config prevents a named-tunnel configuration from changing this into
+# anything other than a one-off Quick Tunnel.
+log_file=$(mktemp -t paseo-quick-tunnel)
+tunnel_pid=''
+tail_pid=''
+
+cleanup() {
+  [[ -n $tail_pid ]] && kill "$tail_pid" 2>/dev/null || true
+  [[ -n $tunnel_pid ]] && kill "$tunnel_pid" 2>/dev/null || true
+  rm -f "$log_file"
+}
+trap cleanup EXIT INT TERM HUP
+
+"$cloudflared_bin" --config /dev/null tunnel --url "http://127.0.0.1:$port" >"$log_file" 2>&1 &
+tunnel_pid=$!
+
+url=''
+for _ in {1..100}; do
+  if ! kill -0 "$tunnel_pid" 2>/dev/null; then
+    cat "$log_file" >&2
+    exit 70
+  fi
+  url=$(sed -nE 's|.*(https://[-a-z0-9]+\.trycloudflare\.com).*|\1|p' "$log_file" | head -n 1 || true)
+  [[ -n $url ]] && break
+  sleep 0.1
+done
+
+if [[ -z $url ]]; then
+  print -u2 'Cloudflare Quick Tunnel did not provide a public URL within 10 seconds.'
+  cat "$log_file" >&2
+  exit 70
+fi
+
+# The URL is deliberately the only stdout output, so an agent can report it
+# verbatim. Subsequent cloudflared diagnostics go to stderr.
+print -r -- "$url"
+tail -n +1 -f "$log_file" >&2 &
+tail_pid=$!
+wait "$tunnel_pid"
