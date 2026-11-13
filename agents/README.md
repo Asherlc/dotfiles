@@ -1,0 +1,73 @@
+# Personal agent configuration
+
+The repository's root `AGENTS.md` owns shared personal instructions. This directory
+owns RTK guidance, personal skills, provider settings, and global Paseo settings.
+
+Run `make install_agents` from a **long-lived checkout**. It links the reviewed
+files into your home directory without installing dependencies or restarting
+applications. For a different home, use `make install_agents TARGET=/path/to/home`.
+Existing regular files and skill directories must be backed up and moved aside
+first; the installer refuses to replace them. Existing symlinks are repointed.
+
+The native Codex, Claude Code, Gemini CLI, and OpenCode instruction entry points
+remain relative symlinks to `~/.agents/AGENTS.md`, which links to root `AGENTS.md`.
+Personal skills get individual links under `~/.agents/skills`; Claude's seven
+Paseo skill entry points continue to link through that directory. Plugin-owned
+`paseo-progress`, Claude `synced`, installed skill lockfiles, and system skills
+remain managed by their original tools. Do not replace entire harness directories.
+
+## Live settings and reviewed examples
+
+The installer links Claude and Gemini settings, Codex/Cursor hooks, Cursor MCP
+settings, OpenCode CLI display settings, and Paseo config and plugin preferences.
+Paseo profiles, its appended system prompt, custom providers, and plugin selections
+are included. Agent/session state, credentials, schedules, caches, downloaded
+plugins, and generated project/tool trust approvals stay local.
+
+Three files are **examples only** and are never installed automatically:
+
+- `codex/config.toml.example`: API keys replaced with `REPLACE_LOCALLY`; generated
+  project trust, hook approvals, app computer-use state, notices, and marketplace
+  cache paths removed. The live `~/.codex/config.toml` retains its credentials.
+- `opencode/opencode.json.example`: the GonkaGate key uses OpenCode's
+  `{env:GONKAGATE_API_KEY}` reference. Supply that environment variable before
+  manually adopting it. The current live config remains untouched.
+- `cursor/cli-config.json.example`: account identity, server/privacy caches, and
+  model selection history removed. The live CLI config remains untouched.
+
+Compare examples with live files when updating settings; there is no custom
+merge or secret-injection layer. Never copy live configs wholesale into Git.
+Claude's existing `settings.local.json` and authentication files remain local.
+
+## Machine-specific dependencies
+
+This is a personal macOS setup. Reviewed `/Users/asherlc` paths are retained where
+needed to preserve current behavior: Superset hooks, iTerm status hooks, the local
+TokenEconomizer checkout, the Gemini launcher, and Paseo's installed plugin paths
+(including installation IDs). The Codex example also references 1Password.app and
+the mise Node installation. Those programs and hooks must already exist; this
+installer does not install or copy them. On another machine, review these paths
+and reinstall plugins before applying settings. JSON/TOML paths are not assumed
+to expand `~` or environment variables.
+
+Paseo reads `~/.paseo/config.json`; its [configuration documentation](https://paseo.sh/docs/configuration.md)
+describes reloading edits. No reload or restart is needed for this move because
+the active settings are unchanged. Future changes may require a reload/restart.
+Codex's [configuration documentation](https://learn.chatgpt.com/docs/config-file/config-basic)
+describes its user config file.
+
+## Recovery and tool-managed writes
+
+The initial migration keeps a private backup under
+`~/.local/state/agent-setup-backups/` (including a manifest). Restore only reviewed
+paths rather than overwriting newer settings. Backups are outside this repository.
+
+Preserve the `CODEGRAPH_START` / `CODEGRAPH_END` block. CodeGraph installers and
+other tools may replace a symlink by atomically renaming a new file over it.
+After upgrades, inspect the native entry points, merge reviewed changes into the
+repository, and restore links with `make install_agents`. Check `git diff` after
+apps change linked settings; do not commit credentials or generated account state.
+
+Live links refer to the checkout where installation ran. Before archiving or
+deleting a worktree, install again from the permanent checkout containing these
+changes. Git-tracked files alone do not preserve a deleted symlink target.

@@ -1,0 +1,74 @@
+{
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    },
+    "enablePermanentToolApproval": true
+  },
+  "ui": {
+    "theme": "Solarized Dark",
+    "inlineThinkingMode": "full"
+  },
+  "general": {
+    "vimMode": true,
+    "defaultApprovalMode": "auto_edit",
+    "enableNotifications": true
+  },
+  "tools": {
+    "shell": {
+      "enableInteractiveShell": false
+    }
+  },
+  "experimental": {
+    "worktrees": true
+  },
+  "ide": {
+    "hasSeenNudge": true
+  },
+  "mcpServers": {
+    "sentry": {
+      "type": "http",
+      "url": "https://mcp.sentry.dev/mcp"
+    },
+    "codegraph": {
+      "type": "stdio",
+      "command": "codegraph",
+      "args": [
+        "serve",
+        "--mcp"
+      ]
+    }
+  },
+  "hooks": {
+    "BeforeAgent": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/asherlc/.superset/hooks/gemini-hook.sh"
+          }
+        ]
+      }
+    ],
+    "AfterAgent": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/asherlc/.superset/hooks/gemini-hook.sh"
+          }
+        ]
+      }
+    ],
+    "AfterTool": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/asherlc/.superset/hooks/gemini-hook.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

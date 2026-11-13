@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeSubmitPrompt": [
+      {
+        "command": "/Users/asherlc/.superset/hooks/cursor-hook.sh Start"
+      }
+    ],
+    "stop": [
+      {
+        "command": "/Users/asherlc/.superset/hooks/cursor-hook.sh Stop"
+      }
+    ],
+    "beforeShellExecution": [
+      {
+        "command": "/Users/asherlc/.superset/hooks/cursor-hook.sh PermissionRequest"
+      }
+    ],
+    "beforeMCPExecution": [
+      {
+        "command": "/Users/asherlc/.superset/hooks/cursor-hook.sh PermissionRequest"
+      }
+    ]
+  }
+}
