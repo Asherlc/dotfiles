@@ -11,10 +11,20 @@ first; the installer refuses to replace them. Existing symlinks are repointed.
 
 The native Codex, Claude Code, Gemini CLI, and OpenCode instruction entry points
 remain relative symlinks to `~/.agents/AGENTS.md`, which links to root `AGENTS.md`.
-Personal skills get individual links under `~/.agents/skills`; Claude's seven
-Paseo skill entry points continue to link through that directory. Plugin-owned
-`paseo-progress`, Claude `synced`, installed skill lockfiles, and system skills
-remain managed by their original tools. Do not replace entire harness directories.
+Personal skills get individual links under `~/.agents/skills`; the custom
+`paseo-loop` entry point for Claude links through that directory. Paseo installs
+and updates its six bundled skills outside this checkout. They are not vendored
+here: startup updates otherwise follow the symlinks and overwrite tracked files.
+Plugin-owned `paseo-progress`, Claude `synced`, installed skill lockfiles, and
+system skills remain managed by their original tools. Do not replace entire
+harness directories.
+
+When upgrading an older symlinked setup, preserve the six bundled skill
+directories as real directories under `~/.agents/skills` before removing their
+old repository copies. The one-time reconciliation backup retains those files.
+Run Paseo to install or refresh bundled skills; `make install_agents` leaves
+them untouched. The shared instructions retain the known workspace-title
+parameter correction without forking the bundled guide.
 
 ## Live settings and reviewed examples
 
