@@ -40,3 +40,23 @@ alias zcat=gzcat
  [[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load av    n
 
 . ~/.aliases.sh
+
+# opencode
+export PATH=/Users/asherlc/.opencode/bin:$PATH
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/asherlc/.local/bin:$PATH"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/asherlc/.lmstudio/bin"
+# End of LM Studio CLI section
+
+
+# pnpm
+export PNPM_HOME="/Users/asherlc/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
