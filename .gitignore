@@ -1,0 +1,11 @@
+# Local copies of credential-bearing agent configuration.
+agents/codex/config.toml
+agents/opencode/opencode.json
+agents/cursor/cli-config.json
+**/auth.json
+**/oauth_creds.json
+**/.env
+**/.env.*
+**/*.local.json
+**/__pycache__/
+.DS_Store

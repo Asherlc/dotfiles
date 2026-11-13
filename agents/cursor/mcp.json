@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "axiom": {
+      "url": "https://mcp.axiom.co/mcp",
+      "headers": {}
+    },
+    "sentry": {
+      "url": "https://mcp.sentry.dev/mcp"
+    },
+    "codegraph": {
+      "type": "stdio",
+      "command": "codegraph",
+      "args": [
+        "serve",
+        "--mcp",
+        "--path",
+        "${workspaceFolder}"
+      ]
+    },
+    "GitGuardian": {
+      "type": "http",
+      "url": "https://mcp.gitguardian.com/mcp"
+    }
+  }
+}

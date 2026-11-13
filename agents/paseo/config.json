@@ -1,0 +1,167 @@
+{
+  "version": 1,
+  "daemon": {
+    "listen": "127.0.0.1:6767",
+    "mcp": {
+      "injectIntoAgents": true
+    },
+    "browserTools": {
+      "enabled": true
+    },
+    "autoArchiveAfterMerge": false,
+    "enableTerminalAgentHooks": true,
+    "appendSystemPrompt": "Always push new commits to the remote automatically.\n\nFor every HTTP development server you start, run /Users/asherlc/bin/paseo-quick-tunnel <port> and keep it running for the server's lifetime. Report only the emitted https://…trycloudflare.com URL to the user; never report a localhost, relay, or asherlc.com URL for that server.\n\n## Default cost-aware Paseo delegation\nUse the Architect profile (Codex / GPT-6.1 Sol / high thinking) for lead-agent planning, architecture, diagnosis, task decomposition, acceptance criteria, and final review. For an explicitly assigned worker task, follow that assignment instead of becoming another lead.\nFor implementation tasks, routine delegation through Paseo is authorized. Read list_profiles and every profile's notes before selecting a worker. Use Paseo create_agent or the Paseo CLI for workers; built-in same-provider subagents do not satisfy the provider-routing preference.\nDelegate bounded mechanical implementation to Cursor implementer (Cursor Auto) first, then Free implementer using only currently confirmed zero-price OpenCode models, then the latest available Codex Luna discovered with list_models (currently codex/gpt-6-luna). Luna is an authorized implementation fallback without further approval; ask before using any other paid implementation model. Never use paid OpenCode Go, paid OpenCode models, purchased credits, or automatic paid overage. If the configured free model is no longer free, report it and choose another confirmed-free eligible model or Luna. A user-requested provider/model overrides this order.\nReuse cached paseo usage reports when available. Monitoring authentication errors or missing reports mean usage is unknown, not quota exhaustion; they must not disqualify Cursor or OpenCode Free. OpenCode Go reports do not describe free-model quota. Free-model limits vary with capacity; one model failure alone does not establish provider-wide exhaustion. Paid Go's model-specific usage weights must not be mistaken for independent quota pools. Reuse confirmed limit failures and their reported reset/Retry-After rather than repeatedly probing a blocked worker; when no reset is known, do not repeatedly retry it during the same task. No arbitrary cross-session cooldown is configured.\nGive each worker the approved plan, relevant files, acceptance criteria, constraints, and required checks. Workers must report architectural uncertainty rather than change approach. Workers must not recursively delegate. Start with sequential edits in the current workspace; create isolated worktrees only for independent concurrent changes and only when repository branch rules permit. Honor repository-specific planning approvals and tests. The lead reviews the actual diff and validation evidence, then sends any mechanical corrections back to the worker.\nThese are delegation instructions, not a billing cap. If the configured free model is no longer offered at zero price, report it rather than selecting a paid replacement. Cursor Auto uses the user's existing Cursor billing plan.\nSee https://paseo.sh/docs/agent-profiles.md and https://paseo.sh/docs/orchestration.md for profiles and cross-provider delegation.",
+    "agentProfiles": [
+      {
+        "id": "architect",
+        "name": "Architect",
+        "provider": "codex",
+        "model": "gpt-6.1-sol",
+        "modeId": "full-access",
+        "thinkingOptionId": "high",
+        "notes": "Lead profile for planning, architecture, diagnosis, task decomposition, acceptance criteria, and final review.\n\nDelegate bounded mechanical implementation to Cursor implementer (Cursor Auto) first, then Free implementer using only currently confirmed zero-price OpenCode models, then OpenRouter free models (via OpenCode), then Command Code models (via OpenCode), then the latest available Codex Luna discovered with list_models (currently codex/gpt-6-luna). Luna is an authorized implementation fallback without further approval; ask before using any other paid implementation model. Never use paid OpenCode Go, paid OpenCode models, purchased credits, or automatic paid overage. If the configured free model is no longer free, report it and choose another confirmed-free eligible model or Luna. A user-requested provider/model overrides this order.\nReuse cached paseo usage reports when available. Monitoring authentication errors or missing reports mean usage is unknown, not quota exhaustion; they must not disqualify Cursor or OpenCode Free. OpenCode Go reports do not describe free-model quota. Free-model limits vary with capacity; one model failure alone does not establish provider-wide exhaustion. Paid Go's model-specific usage weights must not be mistaken for independent quota pools. Reuse confirmed limit failures and their reported reset/Retry-After rather than repeatedly probing a blocked worker; when no reset is known, do not repeatedly retry it during the same task. No arbitrary cross-session cooldown is configured.\n\nAlso use those cheaper models when doing long polling checks of things like CI, deployments, etc\n\nSources: https://paseo.sh/docs/cli#account-usage ; https://paseo.sh/docs/plugins/reference#usage-sources ; https://github.com/anomalyco/opencode/issues/55816 ; https://github.com/anomalyco/opencode/issues/60311"
+      },
+      {
+        "id": "free-implementer",
+        "name": "Free implementer",
+        "provider": "opencode",
+        "model": "opencode/deepseek-v4.1-flash-free",
+        "modeId": "build",
+        "thinkingOptionId": "high",
+        "featureValues": {
+          "auto_accept": true
+        },
+        "notes": "Fallback for bounded mechanical implementation, tests, repetitive edits, and documentation following an approved plan when Cursor Auto is unavailable, plan-limited, or otherwise unable to do the task. Uses an explicitly free OpenCode model. Report architectural uncertainty to the lead. Do not delegate further or switch to a paid model. If unavailable or unable to finish, report the concrete blocker to the lead."
+      },
+      {
+        "id": "cursor-implementer",
+        "name": "Cursor implementer",
+        "provider": "cursor",
+        "model": "default",
+        "modeId": "agent",
+        "featureValues": {
+          "auto_accept": true
+        },
+        "notes": "First choice for bounded mechanical implementation, tests, repetitive edits, and documentation following an approved plan. Uses Cursor Auto under the user's existing plan. If Cursor is unavailable, plan-limited, or unable to complete the task, fall back to Free implementer (OpenCode Free). Treat plan-upgrade errors as unavailability and use the free fallback. Report architectural uncertainty to the lead. Do not delegate further or switch to an explicitly premium model."
+      },
+      {
+        "id": "agent_profile_mwees1aw_k4cyjikzbo",
+        "name": "Free Implementer (OpenCode)",
+        "provider": "opencode",
+        "model": "openrouter/openrouter/free",
+        "modeId": "build",
+        "featureValues": {
+          "auto_accept": true
+        },
+        "notes": "Fallback for bounded mechanical implementation, tests, repetitive edits, and documentation following an approved plan when Cursor Auto is unavailable, plan-limited, or otherwise unable to do the task. Uses an explicitly free OpenCode model. Report architectural uncertainty to the lead. Do not delegate further or switch to a paid model. If unavailable or unable to finish, report the concrete blocker to the lead."
+      }
+    ],
+    "cors": {
+      "allowedOrigins": [
+        "https://app.paseo.sh"
+      ]
+    },
+    "relay": {
+      "enabled": true
+    }
+  },
+  "app": {
+    "baseUrl": "https://app.paseo.sh"
+  },
+  "pluginsEnabled": true,
+  "plugins": {
+    "keep-awake": {
+      "source": "directory",
+      "path": "/Users/asherlc/.paseo/plugins/keep-awake/3b09bf2f-36e8-45ab-b09b-4f2a9a084893/node_modules/paseo-keep-awake",
+      "enabled": true
+    },
+    "host-monitor": {
+      "source": "directory",
+      "path": "/Users/asherlc/.paseo/plugins/host-monitor/3c1c9ae8-104b-4243-ac1b-d71017def9ce/checkout/plugins/host-monitor",
+      "enabled": true
+    },
+    "paseo-sidechat": {
+      "source": "directory",
+      "path": "/Users/asherlc/.paseo/plugins/paseo-sidechat/a2c1c30d-d1bf-4a22-807d-1cd2a47601bc/checkout",
+      "enabled": true
+    },
+    "annotations": {
+      "source": "directory",
+      "path": "/Users/asherlc/.paseo/plugins/annotations/d1c4b32e-96f4-4c33-9857-56d6b6ba6250/checkout",
+      "enabled": true
+    },
+    "progress": {
+      "source": "directory",
+      "path": "/Users/asherlc/.paseo/plugins/progress/f73748df-e501-4a4b-84c7-4fcdeaf4b213/node_modules/@stevecastaneda/paseo-progress",
+      "enabled": true
+    },
+    "workspace-links": {
+      "source": "directory",
+      "path": "/Users/asherlc/.paseo/plugins/workspace-links/8c297341-712d-4915-a25d-f21d50732e85/node_modules/@stevecastaneda/paseo-workspace-links",
+      "enabled": true
+    },
+    "openrouter-usage": {
+      "source": "directory",
+      "path": "/Users/asherlc/.paseo/plugins/openrouter-usage/a6356664-bceb-4843-93f9-d57d18a670b2/checkout",
+      "enabled": true
+    },
+    "better-paseo": {
+      "source": "directory",
+      "path": "/Users/asherlc/.paseo/plugins/better-paseo/bc27748e-2a51-41b7-b6e3-694e87eeecd4/checkout",
+      "enabled": true
+    },
+    "skills": {
+      "source": "directory",
+      "path": "/Users/asherlc/.paseo/plugins/skills/33290dc5-a83a-4eef-bdd6-ef9ebc9479ca/node_modules/@gpambrozio/paseo-skills",
+      "enabled": true
+    },
+    "beautiful-chat": {
+      "source": "directory",
+      "path": "/Users/asherlc/.paseo/plugins/beautiful-chat/4f417eee-8b1e-41d6-bada-3c6dd92ea867/checkout",
+      "enabled": false
+    },
+    "design-canvas": {
+      "source": "directory",
+      "path": "/Users/asherlc/.paseo/plugins/design-canvas/595a0b96-c3f6-4077-9dfe-ae4903f5b97e/node_modules/paseo-design-canvas",
+      "enabled": true
+    },
+    "genui": {
+      "source": "directory",
+      "path": "/Users/asherlc/.paseo/plugins/genui/4c1e872c-7052-4f16-9584-28635954e967/node_modules/paseo-plugin-genui",
+      "enabled": true
+    }
+  },
+  "agents": {
+    "providers": {
+      "cursor": {
+        "extends": "acp",
+        "label": "Cursor",
+        "description": "Cursor's coding agent",
+        "command": [
+          "cursor-agent",
+          "acp"
+        ],
+        "env": {}
+      },
+      "devin": {
+        "extends": "acp",
+        "label": "Devin CLI",
+        "description": "Cognition's Devin for Terminal via Agent Client Protocol",
+        "command": [
+          "devin",
+          "acp"
+        ],
+        "env": {}
+      },
+      "gemini": {
+        "extends": "acp",
+        "label": "Gemini CLI",
+        "description": "Google-account Gemini CLI free quota",
+        "command": [
+          "/Users/asherlc/.local/bin/gemini",
+          "--acp"
+        ]
+      }
+    }
+  }
+}
