@@ -13,8 +13,9 @@ AGENT_LINKS := AGENTS.md=.agents/AGENTS.md agents/README.md=.agents/README.md \
 	agents/paseo/plugin-settings/better-paseo/presentation.json=.paseo/plugin-settings/better-paseo/presentation.json \
 	agents/paseo/plugin-settings/keep-awake/keep-awake.json=.paseo/plugin-settings/keep-awake/keep-awake.json
 AGENT_LINKS += $(foreach skill,$(notdir $(wildcard $(SOURCE)/agents/skills/*)),agents/skills/$(skill)=.agents/skills/$(skill))
+PASEO_SKILLS := paseo paseo-advisor paseo-committee paseo-handoff paseo-help paseo-loop paseo-plugin
 AGENT_NATIVE_PATHS := .claude/CLAUDE.md .gemini/GEMINI.md .codex/AGENTS.md .config/opencode/AGENTS.md \
-	$(addprefix .claude/skills/,paseo paseo-advisor paseo-committee paseo-handoff paseo-help paseo-loop paseo-plugin)
+	$(addprefix .claude/skills/,$(PASEO_SKILLS))
 
 .PHONY: install_agents
 
@@ -60,7 +61,7 @@ install_agents:
 	ln -sfn ../.agents/AGENTS.md "$(TARGET)/.gemini/GEMINI.md"
 	ln -sfn ../.agents/AGENTS.md "$(TARGET)/.codex/AGENTS.md"
 	ln -sfn ../../.agents/AGENTS.md "$(TARGET)/.config/opencode/AGENTS.md"
-	@for skill in paseo paseo-advisor paseo-committee paseo-handoff paseo-help paseo-loop paseo-plugin; do \
+	@for skill in $(PASEO_SKILLS); do \
 		mkdir -p "$(TARGET)/.claude/skills"; \
 		ln -sfn "../../.agents/skills/$$skill" "$(TARGET)/.claude/skills/$$skill"; \
 	done

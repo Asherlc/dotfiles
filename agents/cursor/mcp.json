@@ -1,8 +1,7 @@
 {
   "mcpServers": {
     "axiom": {
-      "url": "https://mcp.axiom.co/mcp",
-      "headers": {}
+      "url": "https://mcp.axiom.co/mcp"
     },
     "sentry": {
       "url": "https://mcp.sentry.dev/mcp"
