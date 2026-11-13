@@ -52,7 +52,7 @@ Choose `baseBranch` explicitly: `origin/main` selects the remote-tracking branch
 
 **`archive_workspace`** — `{ workspaceId }`. Archives the workspace, its agents, and its terminals. Local directories remain; Paseo removes an owned worktree only after its final active workspace reference is archived.
 
-**`rename_workspace`** — `{ workspaceId, name }`. Rename workspace.
+**`rename_workspace`** — `{ title, workspaceId? }`. Sets the workspace's title; omit `workspaceId` to rename the current workspace.
 
 ## Workspace scripts
 
