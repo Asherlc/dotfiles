@@ -39,6 +39,10 @@ When sending Storybook links to the user, always link directly to the specific s
 
 Always run tests non-interactively (for example, `vitest run`) so they terminate rather than entering watch mode.
 
+## Paseo tool schemas
+
+Use the live MCP schema when bundled instructions differ. `rename_workspace` takes `title`, not `name`.
+
 ## Subagent model selection
 
 When delegating to subagents, prefer the lowest-cost model that can do the job.
