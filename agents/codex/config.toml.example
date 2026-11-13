@@ -69,7 +69,7 @@ url = "https://mcp.sentry.dev/mcp"
 command = "npx"
 args = ["-y", "@upstash/context7-mcp"]
 
-[mcp_servers.chrome-devtools]
+[mcp_servers.chrome_devtools]
 command = "npx"
 args = ["chrome-devtools-mcp@latest"]
 
@@ -124,6 +124,3 @@ conversationDetailMode = "STEPS_PROSE"
 
 [desktop.open-in-target-preferences]
 global = "cursor"
-
-[features]
-js_repl = false
