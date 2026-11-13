@@ -24,6 +24,13 @@ Paseo profiles, its appended system prompt, custom providers, and plugin selecti
 are included. Agent/session state, credentials, schedules, caches, downloaded
 plugins, and generated project/tool trust approvals stay local.
 
+Keep shared delegation rules in `paseo/config.json`'s `daemon.appendSystemPrompt`;
+profile notes describe only each role and any profile-specific constraints.
+Model IDs and runtime options belong in the profiles. The OpenRouter profile is
+an alternative free worker, subject to the same current-price checks. The reviewed
+config omits the disabled `beautiful-chat` registration and the unavailable Devin
+provider; installed plugin files remain local.
+
 Three files are **examples only** and are never installed automatically:
 
 - `codex/config.toml.example`: API keys replaced with `REPLACE_LOCALLY`; generated
@@ -32,8 +39,9 @@ Three files are **examples only** and are never installed automatically:
 - `opencode/opencode.json.example`: the GonkaGate key uses OpenCode's
   `{env:GONKAGATE_API_KEY}` reference. Supply that environment variable before
   manually adopting it. The current live config remains untouched.
-- `cursor/cli-config.json.example`: account identity, server/privacy caches, and
-  model selection history removed. The live CLI config remains untouched.
+- `cursor/cli-config.json.example`: account identity, server/privacy caches,
+  model selection history, and per-model parameter history removed. The live CLI
+  config remains untouched.
 
 Compare examples with live files when updating settings; there is no custom
 merge or secret-injection layer. Never copy live configs wholesale into Git.
@@ -51,8 +59,10 @@ and reinstall plugins before applying settings. JSON/TOML paths are not assumed
 to expand `~` or environment variables.
 
 Paseo reads `~/.paseo/config.json`; its [configuration documentation](https://paseo.sh/docs/configuration.md)
-describes reloading edits. No reload or restart is needed for this move because
-the active settings are unchanged. Future changes may require a reload/restart.
+describes reloading edits. Changes in a worktree do not affect live settings
+linked to another checkout. Review and integrate them into that checkout before
+reloading; do not install from a temporary worktree. Settings changes may require
+a reload/restart.
 Codex's [configuration documentation](https://learn.chatgpt.com/docs/config-file/config-basic)
 describes its user config file.
 
