@@ -5,4 +5,5 @@ function nuke-docker() {
   docker rmi $(docker images -q) -f || true;
   docker system prune -f || true;
   docker volume prune -f; }
-function dotenv() { export $(cat .env | xargs); }
+# Load trusted shell-format ./.env, exporting each assignment and restoring caller options.
+function dotenv() { setopt localoptions allexport; source ./.env; }
