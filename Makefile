@@ -24,9 +24,13 @@ UNAME		:= $(shell uname)
 all: clean install
 
 install_dependencies:
-	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	homebrew_installer="$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && \
+	/bin/bash -c "$$homebrew_installer"
 	brew install thefuck rbenv zsh pyenv pyenv-virtualenv
-	if [ -d "$${ZSH:-$$HOME/.oh-my-zsh}" ]; then :; else sh -c "$$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc; fi
+	if [ ! -d "$${ZSH:-$$HOME/.oh-my-zsh}" ]; then \
+		ohmyzsh_installer="$$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && \
+		sh -c "$$ohmyzsh_installer" "" --unattended --keep-zshrc; \
+	fi
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 	mkdir -p ~/.vim/autoload ~/.vim/bundle
 	curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
