@@ -1,6 +1,7 @@
 [user]
 	name = Asher Cohen
 	email = asherlc@asherlc.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICjXK9+8OnZZsfuGC01DvA5XlGLenuSILgnsMnOGXAm3
 [color]
 	diff = auto
 	status = auto
@@ -15,3 +16,15 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+	gpgsign = true
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
