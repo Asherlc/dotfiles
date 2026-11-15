@@ -12,6 +12,10 @@ When the user asks a question (especially "is there an X?", "does Y exist?", "wh
 
 Always prefix shell commands with `rtk`. Use `rtk proxy <command>` when raw command behavior or output is required. Use `rtk gain` and `rtk gain --history` for savings analytics. RTK is a token-optimized CLI proxy; see [the installed command reference](/Users/asherlc/.codex/RTK.md).
 
+## Standing user preference: reuse Firefox
+
+Always reuse the user's existing Firefox session and relevant open tab. Never launch a separate Firefox instance, automation profile, or browser session unless the user explicitly requests it. Before using Firefox DevTools, verify that it is attached to the existing session; if attachment is unverified or unavailable, use computer control of the running Firefox app instead. A tool connection or navigation failure is not permission to launch another instance.
+
 ## Standing user preference: minimum custom code
 
 Satisfy the complete current requirements with the least maintained custom code and operational machinery. Prefer stock platform capabilities, off-the-shelf tools, and existing workflows. Before adding custom code, identify the specific requirement they cannot meet. Use only the smallest domain abstraction needed by actual callers; avoid bespoke CLIs, wrappers, validators, state machines, evidence protocols, and frameworks when existing capabilities suffice. Apply this principle to design, delegation, implementation, and review, and remove unnecessary custom work before shipping. Preserve correctness, safety, operability, and necessary tests; do not confuse fewer maintained concepts with compressed lines. See [Google's review guidance on complexity](https://google.github.io/eng-practices/review/reviewer/looking-for.html#complexity).
