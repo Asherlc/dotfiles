@@ -12,9 +12,11 @@ When the user asks a question (especially "is there an X?", "does Y exist?", "wh
 
 Always prefix shell commands with `rtk`. Use `rtk proxy <command>` when raw command behavior or output is required. Use `rtk gain` and `rtk gain --history` for savings analytics. RTK is a token-optimized CLI proxy; see [the installed command reference](/Users/asherlc/.codex/RTK.md).
 
-## Standing user preference: reuse Firefox
+## Standing user preference: browser selection
 
-Always reuse the user's existing Firefox session and relevant open tab. Never launch a separate Firefox instance, automation profile, or browser session unless the user explicitly requests it. Before using Firefox DevTools, verify that it is attached to the existing session; if attachment is unverified or unavailable, use computer control of the running Firefox app instead. A tool connection or navigation failure is not permission to launch another instance.
+Always use Paseo's embedded browser for pages and visual checks that do not require authentication. Reuse a relevant Paseo browser tab when available; otherwise create one. Unauthenticated browsing does not require permission to use a separate Paseo browser session.
+
+For authenticated browsing, reuse the user's existing Firefox session and relevant open tab. Never launch a separate Firefox instance, automation profile, or authenticated browser session unless the user explicitly requests it. Before using Firefox DevTools, verify that it is attached to the existing session; if attachment is unverified or unavailable, use computer control of the running Firefox app instead. A tool connection or navigation failure is not permission to launch another instance.
 
 ## Standing user preference: minimum custom code
 
