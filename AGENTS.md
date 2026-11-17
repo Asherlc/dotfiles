@@ -12,6 +12,10 @@ When the user asks a question (especially "is there an X?", "does Y exist?", "wh
 
 Always prefix shell commands with `rtk`. Use `rtk proxy <command>` when raw command behavior or output is required. Use `rtk gain` and `rtk gain --history` for savings analytics. RTK is a token-optimized CLI proxy; see [the installed command reference](/Users/asherlc/.codex/RTK.md).
 
+## Standing user preference: CLI and MCP first
+
+Always prefer a suitable CLI or MCP tool over browser or computer control when it can complete the task. Use the browser only for capabilities those tools cannot provide, such as UI-only credential creation or visual verification.
+
 ## Standing user preference: browser selection
 
 Always use Paseo's embedded browser for pages and visual checks that do not require authentication. Reuse a relevant Paseo browser tab when available; otherwise create one. Unauthenticated browsing does not require permission to use a separate Paseo browser session.
