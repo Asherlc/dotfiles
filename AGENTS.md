@@ -59,3 +59,7 @@ When delegating to subagents, prefer the lowest-cost model that can do the job.
 Do not default to the most capable or most expensive model (for example
 Opus-class) unless the task genuinely needs it or a cheaper model has already
 failed. Start cheap and escalate only when justified.
+
+## Homebridge upgrades and recovery
+
+An HTTP 200 from Homebridge's web UI does not establish that accessories work. After upgrades or container recreation, verify the configured plugins load, child bridges listen on their configured ports, and Zigbee2MQTT connects through MQTT. Preserve existing HomeKit pairing files. Keep the plugin dependency manifest in the homelab repository and select an image/Node version supported by the plugins; do not rely on an unpinned `latest` image or manually installed container state. On 2026-11-16, backups showed the plugins present before an upgrade and absent afterward; the exact deletion mechanism was not established.
